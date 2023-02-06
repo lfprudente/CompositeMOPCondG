@@ -1,0 +1,24 @@
+clear
+clc
+
+global problem
+
+rng(123);
+
+% Choose the problem to be solved
+
+problem = 'BK1';
+
+% Set the initial parameters
+
+[n,m,l,u,x0] = inip;
+
+delta = 2/100 * norm(x0);
+
+
+[dimA,A,b] = datas(n,m,delta);
+
+
+[x,info] = CondG(n,m,l,u,x0,dimA,A,b);
+
+[x,info] = ProxGrad(n,m,l,u,x0,dimA,A,b);
