@@ -1,4 +1,4 @@
-function [theta,p,flag] = subproblemProxGrad(n,m,l,u,x,JH,G,dimA,A,b)
+function [theta,tau,p,flag] = subproblemProxGrad(n,m,l,u,x,JH,G,dimA,A,b)
 
 flag = -1;
 ell = 1;
@@ -50,4 +50,5 @@ if ( info == 1 )
 end
 
 p = xopt(2:n+1);
+tau   = xopt(1);
 theta = xopt(1) + 0.5 * ell * norm( p - x )^2;
