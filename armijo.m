@@ -149,21 +149,20 @@ while (1)
             break
         end
 		
-		stpq = ( (g0(ind) / ( (f0(ind)-f) / stp + g0(ind) ) ) / 2 ) * stp;
+	if ( g0(ind) < 0 )
 
-        %stpq = ( (theta / ( (f0(ind)-f) / stp + theta ) ) / 2 ) * stp;
-		
-		stpt = stpq;
-		
-		if ( stpt >= sigma1 * stp && stpt <= sigma2 * stp )
-			stp = stpt;
-		else
-			stp = stp / 2;
+            stpt = ( (g0(ind) / ( (f0(ind)-f) / stp + g0(ind) ) ) / 2 ) * stp;
+
+            if ( stpt >= sigma1 * stp && stpt <= sigma2 * stp )
+                stp = stpt;
+            else
+                stp = stp / 2;
+            end
+        else
+            stp = stp / 2;
         end
-
-        stp = stp / 2;
 		
-		[h] = evalh(n,x+stp*d,ind);
+	[h] = evalh(n,x+stp*d,ind);
         [g,flag] = evalg(n,x+stp*d,ind,A,b);
         
         f = g + h;
