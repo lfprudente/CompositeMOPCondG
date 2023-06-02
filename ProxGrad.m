@@ -44,7 +44,7 @@ while(1)
 
     % Solve the subproblem
 
-    [theta,p,flagIS] = subproblemProxGrad(n,m,l,u,x,JH,G,dimA,A,b);
+    [theta,tau,p,flagIS] = subproblemProxGrad(n,m,l,u,x,JH,G,dimA,A,b);
 
     % Print information
 
@@ -116,7 +116,7 @@ while(1)
 
     % Compute the step size
 
-    [stp,H,G,nfevLS,flagLS] = armijo(n,m,x,d,F,JH,theta,ftol,A,b);
+    [stp,H,G,nfevLS,flagLS] = armijo(n,m,x,d,F,JH,tau,ftol,A,b);
     nfev = nfev + nfevLS;
 
     %stp = min(1,abs(theta)/(2* norm(p-x)^2));
